@@ -367,7 +367,7 @@ module Homebrew
         end
 
         bottle_reinstall_formula(formula, new_formula, args: args)
-        test "brew", "linkage", "--test", named_args: formula_name, ignore_failures: true
+        test "brew", "linkage", "--test", named_args: formula_name, ignore_failures: ignore_failures unless formula_name.end_with?("linux")
         failed_linkage_or_test_messages ||= []
         failed_linkage_or_test_messages << "linkage failed" unless steps.last.passed?
 
